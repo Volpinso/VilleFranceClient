@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import ville.bean.VilleBuilder;
-import ville.bean.VilleMeteo;
 
 /**
  * Servlet implementation class UtilisationVille
@@ -39,7 +37,6 @@ public class Meteo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		List<VilleMeteo> listeVilleMeteo = new ArrayList<VilleMeteo>();
 		URL url = new URL("http://localhost:8181/villeFrance");
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		con.setRequestMethod("GET");
