@@ -95,7 +95,7 @@
 				      <th scope="col">Code Commune Insee</th>
 				      <th scope="col">Nom Commune</th>
 				      <th scope="col">Code Postal</th>
-				      <th scope="col">Lattitude</th>
+				      <th scope="col">Latitude</th>
 				      <th scope="col">Longitude</th>
 				      <th scope="col">Température</th>
 				      <th scope="col">Temps</th>
