@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DecimalFormat;
 
+import javax.net.ssl.HttpsURLConnection;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -94,6 +95,7 @@ String ville = request.getParameter("idVille");
 			responseMeteo.append(inputLineMeteo);
 		}
 		inMeteo.close();
+		
 		System.out.println(responseMeteo);
 		int debutTemps = 0;
 		int finTemps = 0;
@@ -117,6 +119,33 @@ String ville = request.getParameter("idVille");
 		
 		String icone = responseMeteo.substring(debutIcone + 12, finIcone);
 		String cheminIcone = "http://openweathermap.org/img/w/" + icone.substring(icone.indexOf("icon") + 7 , icone.indexOf("}") - 1) + ".png";
+		String population = "Inconnu";
+		
+		try {
+    		URL urlPop = new URL("https://geo.api.gouv.fr/communes/" + codeCommuneInsee
+    		        + "?fields=population");
+            HttpsURLConnection conPop = (HttpsURLConnection) urlPop.openConnection();
+            conPop.setRequestMethod("GET");
+            
+            BufferedReader inPop = new BufferedReader(
+                    new InputStreamReader(conPop.getInputStream()));
+            String inputLinePop;
+            StringBuffer responsePop = new StringBuffer();
+            
+            while ((inputLinePop = inPop.readLine()) != null) {
+                responsePop.append(inputLinePop);
+            }
+            inPop.close();
+            
+            if (!responsePop.equals("Not Found")) {
+                population = responsePop.substring(responsePop.indexOf("population") + 12, responsePop.indexOf(",\"nom\"")); 
+            } else {
+                population = "Inconnu";
+            }
+		}
+		catch (Exception e) {
+		    
+		}
 		
 		HttpSession session = request.getSession();
 		
@@ -131,6 +160,7 @@ String ville = request.getParameter("idVille");
 		villeMeteo.setTemperature(temperatureCelcius);
 		villeMeteo.setTemps(temps);
 		villeMeteo.setIdTemps(cheminIcone);
+        villeMeteo.setPop(population);
 		
 		session.setAttribute("villeMeteo", villeMeteo);
 		

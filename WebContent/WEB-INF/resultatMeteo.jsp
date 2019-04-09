@@ -97,6 +97,7 @@
 				      <th scope="col">Code Postal</th>
 				      <th scope="col">Latitude</th>
 				      <th scope="col">Longitude</th>
+				      <th scope="col"> Population</th>
 				      <th scope="col">Température</th>
 				      <th scope="col">Temps</th>
 			    </tr>
@@ -108,6 +109,7 @@
 				    <td>${villeMeteo.getCodePostal()}</td>
 				    <td>${villeMeteo.getLattitude()}</td>
 				    <td>${villeMeteo.getLongitude()}</td>
+				    <td>${villeMeteo.getPop()}</td>
 					<td>${villeMeteo.getTemperature()} °C</td>
 					<td><img src="${villeMeteo.getIdTemps()}"/> </td>
 			  	</tr>

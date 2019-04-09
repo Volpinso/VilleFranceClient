@@ -12,6 +12,7 @@ public class VilleMeteo {
 	private String temperature;
 	private String temps;
 	private String idTemps;
+	private String pop;
 
 	public VilleMeteo() {
 		super();
@@ -96,7 +97,7 @@ public class VilleMeteo {
                 + ", libelleAcheminement=" + this.libelleAcheminement + ", ligne5=" + this.ligne5 
                 + ", lattitude=" + this.lattitude + ", longitude="
                 + this.longitude + ", temperature=" + this.temperature + ", temps=" + this.temps + 
-                ", idTemps=" + this.idTemps + "]";
+                ", idTemps=" + this.idTemps + ", population=" + this.pop + "]";
     }
 
 	public String getIdTemps() {
@@ -106,5 +107,13 @@ public class VilleMeteo {
 	public void setIdTemps(String idTemps) {
 		this.idTemps = idTemps;
 	}
+
+    public String getPop() {
+        return pop;
+    }
+
+    public void setPop(String pop) {
+        this.pop = pop;
+    }
 
 }
